@@ -51,17 +51,22 @@ public class AdapterDao<T> implements InterfazDao<T> {
         if (object == null) {
             throw new IllegalArgumentException("El objeto a guardar no puede ser nulo");
         }
-
-        System.out.println("Persisting object: " + object);
+    
+        // En lugar de imprimir directamente el objeto, imprime un mensaje más general.
+        System.out.println("Guardando objeto...");
+    
         LinkedList<T> list = listAll(); // Obtener la lista existente
         if (list == null) {
             list = new LinkedList<>(); // Asegúrate de inicializar la lista
         }
         list.add(object);
+    
+        // Aquí también se evita imprimir directamente la lista serializada
         String info = g.toJson(list.toArray());
-        System.out.println("Escribiendo datos al archivo: " + info);
+        System.out.println("Escribiendo datos al archivo...");
         saveFile(info);
     }
+    
 
     private String readFile() throws Exception {
         File file = new File(filePath + clazz.getSimpleName() + ".json");

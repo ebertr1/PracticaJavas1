@@ -1,8 +1,10 @@
 package com.example.rest;
 
+import controller.Dao.ProyectoDao;
 import controller.Dao.Exception.ListEmptyException;
 import controller.Dao.servicies.InversionistaServicies;
 import controller.Dao.servicies.ProyectoServicies;
+import controller.tda.list.LinkedList;
 import models.Inversionista;
 import models.Proyecto;
 
@@ -11,12 +13,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.core.MediaType;
@@ -212,6 +216,211 @@ public Response deleteProyecto(@PathParam("id") int id) {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(res).build();
     }
 }
+@SuppressWarnings("unchecked")
+@Path("/list/search/nombre/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersonsLastName(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscar_nombre(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+
+@SuppressWarnings("unchecked")
+@Path("/list/search/inversionistas/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersonsInversionistas(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscar_inversionistas(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+
+@SuppressWarnings("unchecked")
+@Path("/list/search/ubicacion/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersonsUbicacion(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscar_ubicacion(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+
+@SuppressWarnings("unchecked")
+    @Path("/list/order/{attribute}/{type}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonsLastName(@PathParam("attribute") String attribute, @PathParam("type") Integer type) {
+        HashMap map = new HashMap<>();
+        ProyectoServicies ps = new ProyectoServicies();
+        map.put("msg", "Ok");
+        try {
+            //revisar el order
+            LinkedList lista = ps.orderQuick(type, attribute);
+            map.put("data", lista.toArray());
+            if (lista.isEmpty()) {
+                map.put("data", new Object[] {});
+            }
+        } catch (Exception e) {
+            // TODO handle exception
+        }
+
+        return Response.ok(map).build();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Path("/list/merge/{attribute}/{type}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProyectoLastName(@PathParam("attribute") String attribute, @PathParam("type") Integer type) {
+        HashMap map = new HashMap<>();
+        ProyectoServicies ps = new ProyectoServicies();
+        map.put("msg", "Ok");
+        try {
+            //revisar el order
+            LinkedList lista = ps.orderMerge(type, attribute);
+            map.put("data", lista.toArray());
+            if (lista.isEmpty()) {
+                map.put("data", new Object[] {});
+            }
+        } catch (Exception e) {
+            // TODO handle exception
+        }
+
+        return Response.ok(map).build();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Path("/list/shell/{attribute}/{type}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProyectoL(@PathParam("attribute") String attribute, @PathParam("type") Integer type) {
+        HashMap map = new HashMap<>();
+        ProyectoServicies ps = new ProyectoServicies();
+        map.put("msg", "Ok");
+        try {
+            //revisar el order
+            LinkedList lista = ps.orderMerge(type, attribute);
+            map.put("data", lista.toArray());
+            if (lista.isEmpty()) {
+                map.put("data", new Object[] {});
+            }
+        } catch (Exception e) {
+            // TODO handle exception
+        }
+
+        return Response.ok(map).build();
+    }
+
+    @SuppressWarnings("unchecked")
+@Path("/list/search/lineal/nombre/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersonsLa(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscarNombreLineal(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+@SuppressWarnings("unchecked")
+@Path("/list/search/binario/nombre/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersdssonsLa(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscarNombreBinario(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+@SuppressWarnings("unchecked")
+@Path("/list/search/lineal/inversionistas/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersonLa(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscarInversionistasLineal(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+@SuppressWarnings("unchecked")
+@Path("/list/search/binario/inversionistas/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPersodnLa(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscarInversionistaBinario(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
 
 
+@SuppressWarnings("unchecked")
+@Path("/list/search/lineal/ubicacion/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPedrsonsUbicacion(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscarUbicacionLineal(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
+
+@SuppressWarnings("unchecked")
+@Path("/list/search/binario/ubicacion/{texto}")
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+public Response getPedrdsonsUbicacion(@PathParam("texto") String texto) {
+    HashMap map = new HashMap<>();
+    ProyectoServicies ps = new ProyectoServicies();
+    map.put("msg", "Ok");
+    LinkedList lista = ps.buscarUbicacionBinario(texto);
+    map.put("data", lista.toArray());
+    if (lista.isEmpty()) {
+        map.put("data", new Object[] {});
+    }
+    return Response.ok(map).build();
+}
 }

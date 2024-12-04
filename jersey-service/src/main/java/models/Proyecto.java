@@ -144,6 +144,13 @@ public class Proyecto {
         return calcularInversionTotal();
     }
 
+    @Override
+    public String toString() {
+        return  ", nombre='" + nombre + '\'' +
+                ", inversionistas='" + inversionistas + '\'' +
+                ", ubicacion='" + ubicacion + '\'' +
+                '}';
 
     
+}
 }

@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "AMain",
+            "request": "launch",
+            "mainClass": "AMain",
+            "projectName": "jersey-service"
+        },
+        {
+            "type": "java",
+            "name": "pruebasBusqueda",
+            "request": "launch",
+            "mainClass": "pruebas.pruebasBusqueda",
+            "projectName": "jersey-service"
+        },
+        {
+            "type": "java",
+            "name": "pruebasOrdenacion",
+            "request": "launch",
+            "mainClass": "pruebas.pruebasOrdenacion",
+            "projectName": "jersey-service"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "MainQueque",
+            "request": "launch",
+            "mainClass": "MainQueque",
+            "projectName": "jersey-service"
+        },
+        {
+            "type": "java",
+            "name": "MainStack",
+            "request": "launch",
+            "mainClass": "MainStack",
+            "projectName": "jersey-service"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.example.rest.Main",
+            "projectName": "jersey-service"
+        },
+        {
+            "type": "java",
+            "name": "MainController",
+            "request": "launch",
+            "mainClass": "pruebas.MainController",
+            "projectName": "jersey-service"
+        }
+    ]
+}
